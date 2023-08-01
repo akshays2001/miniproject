@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .search-form {
+      margin-bottom: 20px;
+    }
+
+    .search-form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      margin: 0;
+    }
+
+    .product-card p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Viewer</h1>
+
+  <div class="search-form">
+    <input type="text" id="search-input" placeholder="Search for products">
+  </div>
+
+  <div class="product-list" id="product-list"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    const productList = document.querySelector('#product-list');
+    const searchInput = document.querySelector('#search-input');
+
+    // Function to fetch and display products from Firestore
+    function fetchProducts() {
+      productList.innerHTML = ''; // Clear the existing product list
+
+      db.collection('Sellers')
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const productData = doc.data();
+            const productCard = createProductCard(productData);
+            productList.appendChild(productCard);
+          });
+        })
+        .catch((error) => {
+          console.log('Error fetching products:', error);
+        });
+    }
+
+    // Function to create a product card element
+    function createProductCard(product) {
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+
+      const productImage = document.createElement('img');
+      productImage.src = product.imageUrl;
+      productCard.appendChild(productImage);
+
+      const productName = document.createElement('h3');
+      productName.textContent = product.name;
+      productCard.appendChild(productName);
+
+      const productDescription = document.createElement('p');
+      productDescription.textContent = product.description;
+      productCard.appendChild(productDescription);
+
+      return productCard;
+    }
+
+    // Event listener for search input
+    searchInput.addEventListener('input', () => {
+      const searchKeyword = searchInput.value.toLowerCase();
+
+      Array.from(productList.children).forEach((productCard) => {
+        const productName = productCard.querySelector('h3').textContent.toLowerCase();
+        const productDescription = productCard.querySelector('p').textContent.toLowerCase();
+
+        if (productName.includes(searchKeyword) || productDescription.includes(searchKeyword)) {
+          productCard.style.display = 'block';
+        } else {
+          productCard.style.display = 'none';
+        }
+      });
+    });
+
+    // Fetch and display products initially
+    fetchProducts();
+  </script>
+</body>
+</html>

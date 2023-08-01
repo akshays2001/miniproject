@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landing Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('buyer_suitability_bg.jpg');
+      background-size: cover;
+    }
+
+    .taskbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .taskbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .taskbar li {
+      margin-right: 10px;
+    }
+
+    .taskbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 36px;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .action-buttons a {
+      display: inline-block;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 30px;
+      margin: 0 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      outline: none;
+    }
+
+    .action-buttons a:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="taskbar">
+    <h2 id="username"></h2>
+    
+    <ul>
+      <li><a href="login page.html" class="button-primary">Home</a></li>
+      <li><a href="about.html" class="button-secondary">about</a></li>
+      <li><a href="index2.html" class="button-secondary">logout</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Welcome to LOCA</h1>
+    <p>SEARCH FOR PRODUCTS HERE.</p>
+    <div class="action-buttons">
+      <a href="view products page.html" class="button-primary">Search for Products</a>
+      <a href="#" class="button-secondary">View Cart</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtJCCHY2M1d12MOfPE_QtLnhS_uthOO-Y",
+      authDomain: "loca-5c772.firebaseapp.com",
+      databaseURL: "https://loca-5c772-default-rtdb.firebaseio.com",
+      projectId: "loca-5c772",
+      storageBucket: "loca-5c772.appspot.com",
+      messagingSenderId: "539918175499",
+      appId: "1:539918175499:web:e348aaf5f6dc799423660e",
+      measurementId: "G-WCM2EMD5MC"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+   
+    const usernameElement = document.getElementById('username');
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        const displayName = user.displayName;
+        usernameElement.textContent = displayName;
+      } else {
+        
+        usernameElement.textContent = 'Guest';
+      }
+    });
+    
+
+  </script>
+</body>

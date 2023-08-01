@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section>
+        <header>
+            <div class="circle"></div>
+            <div class="circles"></div>
+            <a href="#" class="logo">LO<span>CA</span></a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="productDetails.html">Product Details</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+            <p><a href="index2.html">Customer</a></p>
+            <p><a href="index.html">Seller</a></p>
+
+            
+ 
+        </header>
+
+        <div class="texts">
+            <h1>About <span>LOCA</span></h1>
+            <p>A localized product finder website is a website that helps users to find products in their local area. This website includes a search feature where users can enter the name of a product or a category of products, and the website will display a list of products that match the search criteria.One of the essential features of a localized product finder website is the ability to filter search results based on the user's location. The website typically uses the user's IP address or GPS location to determine their location and show products that are available nearby. This feature is particularly useful for users who want to find products quickly without having to travel long distances.
+            </p>
+        </div>
+
+        <div class="background_image">
+            <img src="image/bg1.png">
+        </div>
+
+        <div class="btn">
+            <p class="read">Read More</p>
+            <p>Shop Now</p>
+        </div>
+    </section>
+
+
+
+
+    <!--About Page-->
+
+    <div class="about">
+        <div class="box">
+            <div class="card">
+                <img src="image/Computer.png">
+            </div>
+            <div class="card">
+                <img src="image/gift.png">
+            </div>
+            <div class="card">
+                <img src="image/t-shirt.png">
+            </div>
+            <div class="card">
+                <img src="image/food.png">
+            </div>
+            <div class="card">
+                <img src="image/mobile.png">
+            </div>
+        </div>
+        <hr>
+
+        <div class="Clothes">
+            <h1>Products</h1>
+           
+            <div class="clothes_box">
+                <div class="clothes_card">
+                    <img src="image/ec.png">
+                    <h1>Electronics</h1>
+                    <p>
+                        Electronic devices are components  for the purpose of information processing and system control.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="image/clothes.jfif">
+                    <h1>Clothes</h1>
+                    <p>
+                        Clothing is made of fabrics or textiles, but over time it has included garments made from animal skin
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="image/beauty.png">
+                    <h1>Beauty products</h1>
+                    <p>
+                        Beauty Products means skincare, personal care, fragrance, haircare and color (cosmetics) products, in each case including all components
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="image/gadgets.jpg">
+                    <h1>Home appliances</h1>
+                    <p>
+                        A home appliance, also referred to as a domestic appliance, an electric appliance or a household appliance, is a machine .
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="Food">
+            <p>        </p>
+            <div class="food_box">
+                <div class="food_card">
+                    <img src="image/sport.jpg">
+                    <h1>Sports</h1>
+                    <p>
+                        Sports equipment, sporting equipment, also called sporting goods, are the tools, materials, apparel, and gear used to compete in a sport 
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+
+                <div class="food_card">
+                    <img src="image/books.jpg">
+                    <h1>Books</h1>
+                    <p>
+                        A book is a medium for recording information in the form of writing or images
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+
+                <div class="food_card">
+                    <img src="image/groceries.jfif">
+                    <h1>Groceries</h1>
+                    <p>A grocery store (AE), grocery shop (BE) or simply grocery is a store that primarily retails a general range of food products, which may be fresh or packaged
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+
+                <div class="food_card">
+                    <img src="image/food.jpg">
+                    <h1>Food</h1>
+                    <p>
+                        Food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module">
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
+        import { getAuth,createUserWithEmailAndPassword,updateProfile} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"; 
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCtJCCHY2M1d12MOfPE_QtLnhS_uthOO-Y",
+          authDomain: "loca-5c772.firebaseapp.com",
+          databaseURL: "https://loca-5c772-default-rtdb.firebaseio.com",
+          projectId: "loca-5c772",
+          storageBucket: "loca-5c772.appspot.com",
+          messagingSenderId: "539918175499",
+          appId: "1:539918175499:web:e348aaf5f6dc799423660e",
+          measurementId: "G-WCM2EMD5MC"
+        };
+      
+        
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+      
+
+    
